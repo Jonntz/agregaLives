@@ -1,22 +1,61 @@
 <mat-tab-group mat-align-tabs="start" style="padding-top: 40px; padding-left: 2%; padding-right: 2%;">
   <mat-tab label="Próximas">
-    <div fxLayout="row" fxLayoutAlign="start center" style="padding: 2%;">
-      <div style="margin: 0.5%;">
-        <mat-card class="example-card">
-          <mat-card-header>
+    <div fxLayout="row wrap" fxLayoutAlign="start center" style="padding: 2%;">
+      <ng-container style="margin: 0.5%;" *ngFor="let live of livesNext">
+        <mat-card class="example-card mat-card-live" fxFlex="0 1 calc(33.3% - 11px)"
+        fxFlex.lt-md="0 1 calc(50% - 11px)" fxFlex.lt-sm="100%">
+          <mat-card-title class="mat-card-title-live">
+            <div class="row">
+              <p>
+                <span style="font-size: 1rem;" fxFlex="60" fxLayoutAlign="start center">{{ live.liveName }}</span>
+                <span fxFlex></span>
+                <mat-chip class="mat-chip-date" fxFlex="35" fxLayoutAlign="center center">
+                  <span style="font-size: 0.7rem;">{{ live.liveDate | localDateTime }}</span>
+                </mat-chip>
+              </p>
+              <p style="font-size: 0.8rem; margin-top: -6px;">
+                <span>Canal: {{ live.channelName }}</span>
+              </p>
+            </div>
+          </mat-card-title>
 
-          </mat-card-header>
-
-          <mat-card-content>
-            <p>
-              The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-              A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-              bred for hunting.
-            </p>
+          <mat-card-content fxLayoutAlign="center center">
+            <div>
+              <iframe width="380" height="290" [src]="live.urlSafe" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
           </mat-card-content>
         </mat-card>
-      </div>
+      </ng-container>
     </div>
   </mat-tab>
-  <mat-tab label="Realizadas">Realizadas</mat-tab>
+
+  <mat-tab label="Realizadas">
+    <div fxLayout="row wrap" fxLayoutAlign="start center" style="padding: 2%;">
+      <ng-container style="margin: 0.5%;" *ngFor="let live of livesPrevious">
+        <mat-card class="example-card mat-card-live" fxFlex="0 1 calc(33.3% - 11px)"
+        fxFlex.lt-md="0 1 calc(50% - 11px)" fxFlex.lt-sm="100%">
+          <mat-card-title class="mat-card-title-live">
+            <div class="row">
+              <p>
+                <span style="font-size: 0.9rem;" fxFlex="60" fxLayoutAlign="start center">{{ live.liveName }}</span>
+                <span fxFlex></span>
+                <mat-chip class="mat-chip-date" fxFlex="35" fxLayoutAlign="center center">
+                  <span style="font-size: 0.7rem;">{{ live.liveDate | localDateTime }}</span>
+                </mat-chip>
+              </p>
+              <p style="font-size: 0.7rem; margin-top: -6px;">
+                <span >Canal: {{ live.channelName }}</span>
+              </p>
+            </div>
+          </mat-card-title>
+
+          <mat-card-content fxLayoutAlign="center center">
+            <div>
+              <iframe width="380" height="290" [src]="live.urlSafe" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </ng-container>
+    </div>
+  </mat-tab>
 </mat-tab-group>
