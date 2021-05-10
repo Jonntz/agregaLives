@@ -1,5 +1,5 @@
 export class ResponsePageable {
-  content: any = [];
+  content: any[] = [];
   first: boolean = false;
   last: boolean = false;
   number: number = 0;
